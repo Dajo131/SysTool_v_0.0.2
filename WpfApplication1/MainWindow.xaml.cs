@@ -7,6 +7,7 @@ using Microsoft.PowerShell.Cmdletization.Xml;
 using Microsoft.PowerShell.Cim;
 using Microsoft.PowerShell.Commands.Management;
 using System.Windows.Forms;
+using System.Management;
 
 
 namespace WpfApplication1
