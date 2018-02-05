@@ -17,24 +17,15 @@
         <TabControl
             x:Name="tabControl"
             Width="676"
-            Height="438"
-            Margin="10,24,0,0"
+            Height="419"
+            Margin="10,43,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top">
             <TabItem
                 x:Name="Tool_tab"
                 Header="Tool's"
                 TabIndex="1">
-                <Grid Margin="0,2,0,-2" Background="#FFE5E5E5">
-                    <TextBox
-                        x:Name="Textbox"
-                        Width="450"
-                        Height="25"
-                        Margin="10,35,0,0"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        x:FieldModifier="public"
-                        TextWrapping="Wrap" />
+                <Grid Margin="0,7,0,-7" Background="#FFE5E5E5">
                     <GroupBox
                         x:Name="groupBox"
                         Grid.ColumnSpan="3"
@@ -169,18 +160,7 @@
                 x:Name="Network_Tab"
                 Header="Netzwerk"
                 TabIndex="2">
-                <Grid Background="#FFE5E5E5">
-                    <TextBox
-                        x:Name="textBox"
-                        Width="115"
-                        Height="17"
-                        Margin="-140,-16,0,0"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        BorderThickness="10"
-                        Text="TextBox"
-                        TextWrapping="Wrap" />
-                </Grid>
+                <Grid Background="#FFE5E5E5" />
             </TabItem>
             <TabItem
                 x:Name="AD_Tab"
@@ -276,5 +256,41 @@
                     Header="about" />
             </MenuItem>
         </Menu>
+        <TextBox
+            x:Name="Computername"
+            Width="450"
+            Height="25"
+            Margin="30,90,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            TextWrapping="Wrap" />
+        <TextBox
+            x:Name="Benutzername"
+            Width="100"
+            Height="20"
+            Margin="400,10,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="Benutzer"
+            TextWrapping="Wrap" />
+        <TextBox
+            x:Name="Kennwort"
+            Width="100"
+            Height="20"
+            Margin="515,10,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            KeyDown="Password_Enter"
+            Text="Password"
+            TextWrapping="Wrap" />
+        <Button
+            x:Name="Login"
+            Width="50"
+            Height="20"
+            Margin="625,10,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Login"
+            FontSize="10" />
     </Grid>
 </Window>
