@@ -12,6 +12,12 @@ using System.Security;
 using System.DirectoryServices;
 using System.DirectoryServices.ActiveDirectory;
 using System;
+using System.Drawing;
+using System.Collections;
+using System.ComponentModel;
+using System.Data;
+
+
 
 
 namespace WpfApplication1
@@ -24,15 +30,18 @@ namespace WpfApplication1
         public MainWindow()
         {
             InitializeComponent();
+            
         }
         //Variablen
 
         bool LoginStatus = false;
- 
+        
+
         //Buttons
 
         private void SysInfo_Click(object sender, RoutedEventArgs e)
         {
+            //https://www.codeproject.com/Articles/8241/Get-System-Info-using-C
         }
 
         private void LocAdmin_Click(object sender, RoutedEventArgs e)
@@ -89,29 +98,31 @@ namespace WpfApplication1
             Restart.StartInfo.Arguments = string.Format(@" /C shutdown -i -m \\{0}.meier.local", Computername.Text);
             Restart.Start();
         }
-
-        public void Password_Click(object sender, System.Windows.Input.KeyEventArgs e)
+ 
+        private void Login_Click(object sender, RoutedEventArgs e)
         {
             if (Authenticate("meier.local", Benutzername.Text, Kennwort.Text))
             {
                 string Popup1 = "Login successful";
                 MessageBox.Show(Popup1);
                 bool loginStatus = true;
+                Kennwort.Text = "";
             }
             else
             {
                 string Popup2 = "Login was not successful";
                 MessageBox.Show(Popup2);
-                bool LoginStatus = false
+                bool LoginStatus = false;
+                Kennwort.Text = "";
             };
         }
-    
 
 
-    // Funktionen 
+        // Funktionen 
 
-    //öffnen des Explorers
-    private static void OpenExplorer(string path)
+        //öffnen des Explorers
+
+        private static void OpenExplorer(string path)
         {
             if (Directory.Exists(path))
                 Process.Start("explorer.exe", path);
@@ -153,5 +164,6 @@ namespace WpfApplication1
             return bAuth;
         }
 
+        
     }    
 }

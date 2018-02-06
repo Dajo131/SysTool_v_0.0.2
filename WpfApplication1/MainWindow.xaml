@@ -45,7 +45,6 @@
                         Header="Support" />
                     <Button
                         x:Name="BtnSysInfo"
-                        Grid.ColumnSpan="3"
                         Width="110"
                         Height="25"
                         Margin="30,100,0,0"
@@ -113,20 +112,11 @@
                         x:Name="btnViewC"
                         Width="110"
                         Height="25"
-                        Margin="360,140,0,0"
+                        Margin="515,100,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         Click="ViewC_Click"
                         Content="View C" />
-                    <Button
-                        x:Name="btnRemoteAssistance"
-                        Width="110"
-                        Height="25"
-                        Margin="515,100,0,0"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        Click="RemoteAssistance_Click"
-                        Content="Remote Assistance" />
                     <Button
                         x:Name="btnSendMessage"
                         Width="110"
@@ -140,7 +130,7 @@
                         x:Name="btnRestart"
                         Width="110"
                         Height="25"
-                        Margin="360,180,0,0"
+                        Margin="360,140,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         Click="Restart_Click"
@@ -280,7 +270,6 @@
             Margin="515,10,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            KeyDown="Password_Enter"
             Text="Password"
             TextWrapping="Wrap" />
         <Button
@@ -290,6 +279,7 @@
             Margin="625,10,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            Click="Login_Click"
             Content="Login"
             FontSize="10" />
     </Grid>
