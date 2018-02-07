@@ -21,6 +21,7 @@ namespace WpfApplication1
     /// </summary>
     public partial class MainWindow : Window
     {
+      
         public MainWindow()
         {
             InitializeComponent();
@@ -29,12 +30,13 @@ namespace WpfApplication1
 
         bool LoginStatus = false;
         public int Selektor = 0;
-
+        
         //Buttons
-       
+ 
         private void SysInfo_Click(object sender, RoutedEventArgs e)
         {
-            //https://www.codeproject.com/Articles/8241/Get-System-Info-using-C
+            SystemInfoForm SIF = new SystemInfoForm();
+            SIF.Show();
         }
 
         private void COMPMGMT_Click(object sender, RoutedEventArgs e)
@@ -55,7 +57,7 @@ namespace WpfApplication1
 
         private void StartItem_Click(object sender, RoutedEventArgs e)
         {
-            
+           
         }
 
         private void Process_Click(object sender, RoutedEventArgs e)
@@ -108,28 +110,31 @@ namespace WpfApplication1
             if (Authenticate("meier.local", Benutzername.Text, Kennwort.Text))
             {
                 string Popup1 = "Login successful";
-                MessageBox.Show(Popup1);
+                System.Windows.MessageBox.Show(Popup1);
                 bool loginStatus = true;
             }
             else
             {
                 string Popup2 = "Login was not successful";
-                MessageBox.Show(Popup2);
+                System.Windows.MessageBox.Show(Popup2);
                 bool LoginStatus = false;
             };
         }
-    
 
 
-    // Funktionen 
 
-    //öffnen des Explorers
-    private static void OpenExplorer(string path)
+        // Funktionen 
+
+        //öffnen des Explorers
+        
+        private static void OpenExplorer(string path)
         {
             if (Directory.Exists(path))
                 Process.Start("explorer.exe", path);
         }
 
+
+        // Authenficaton am AD
         public static bool Authenticate(string domain, string username, string password)
         {
             SecureString pwd = new SecureString();
@@ -165,6 +170,9 @@ namespace WpfApplication1
             }
             return bAuth;
         }
+
+        //Nächste Funtkion
+        
 
     }    
 }
