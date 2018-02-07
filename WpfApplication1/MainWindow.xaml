@@ -45,7 +45,7 @@
                         Header="Support" />
                     <Button
                         x:Name="BtnSysInfo"
-                        Width="110"
+                        Width="125"
                         Height="25"
                         Margin="30,100,0,0"
                         HorizontalAlignment="Left"
@@ -54,7 +54,7 @@
                         Content="System Info" />
                     <Button
                         x:Name="btnStartItems"
-                        Width="110"
+                        Width="125"
                         Height="25"
                         Margin="185,100,0,0"
                         HorizontalAlignment="Left"
@@ -62,18 +62,17 @@
                         Click="StartItem_Click"
                         Content="Startup Items" />
                     <Button
-                        x:Name="btnLocalAdmins"
-                        Grid.ColumnSpan="3"
-                        Width="110"
+                        x:Name="btnCOMPMGMT"
+                        Width="125"
                         Height="25"
                         Margin="30,140,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
-                        Click="LocAdmin_Click"
-                        Content="Local Admins" />
+                        Click="COMPMGMT_Click"
+                        Content="Computerverwaltung" />
                     <Button
                         x:Name="btnProcesses"
-                        Width="110"
+                        Width="125"
                         Height="25"
                         Margin="185,140,0,0"
                         HorizontalAlignment="Left"
@@ -82,8 +81,7 @@
                         Content="Processes" />
                     <Button
                         x:Name="btnApplication"
-                        Grid.ColumnSpan="3"
-                        Width="110"
+                        Width="125"
                         Height="25"
                         Margin="30,180,0,0"
                         HorizontalAlignment="Left"
@@ -92,7 +90,7 @@
                         Content="Applications" />
                     <Button
                         x:Name="btnServices"
-                        Width="110"
+                        Width="125"
                         Height="25"
                         Margin="185,180,0,0"
                         HorizontalAlignment="Left"
@@ -112,7 +110,7 @@
                         x:Name="btnViewC"
                         Width="110"
                         Height="25"
-                        Margin="515,100,0,0"
+                        Margin="360,140,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         Click="ViewC_Click"
@@ -121,7 +119,7 @@
                         x:Name="btnSendMessage"
                         Width="110"
                         Height="25"
-                        Margin="515,140,0,0"
+                        Margin="516,100,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         Click="Message_Click"
@@ -130,7 +128,7 @@
                         x:Name="btnRestart"
                         Width="110"
                         Height="25"
-                        Margin="360,140,0,0"
+                        Margin="516,140,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         Click="Restart_Click"
@@ -279,7 +277,6 @@
             Margin="625,10,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Click="Login_Click"
             Content="Login"
             FontSize="10" />
     </Grid>

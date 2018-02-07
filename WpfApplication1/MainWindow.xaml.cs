@@ -12,12 +12,6 @@ using System.Security;
 using System.DirectoryServices;
 using System.DirectoryServices.ActiveDirectory;
 using System;
-using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-
-
 
 
 namespace WpfApplication1
@@ -30,38 +24,52 @@ namespace WpfApplication1
         public MainWindow()
         {
             InitializeComponent();
-            
         }
         //Variablen
 
         bool LoginStatus = false;
-        
+        public int Selektor = 0;
 
         //Buttons
-
+       
         private void SysInfo_Click(object sender, RoutedEventArgs e)
         {
             //https://www.codeproject.com/Articles/8241/Get-System-Info-using-C
         }
 
-        private void LocAdmin_Click(object sender, RoutedEventArgs e)
+        private void COMPMGMT_Click(object sender, RoutedEventArgs e)
         {
+            Process compmgmt = new Process();
+            compmgmt.StartInfo.FileName = "compmgmt.msc";
+            compmgmt.StartInfo.Arguments = string.Format("/computer={0}.meier.local", Computername.Text);
+            compmgmt.Start();
         }
 
         private void Services_Click(object sender, RoutedEventArgs e)
         {
+            Process Services = new Process();
+            Services.StartInfo.FileName = "services.msc";
+            Services.StartInfo.Arguments = string.Format("/computer={0}.meier.local", Computername.Text);
+            Services.Start();
         }
 
         private void StartItem_Click(object sender, RoutedEventArgs e)
         {
+            
         }
 
         private void Process_Click(object sender, RoutedEventArgs e)
         {
+            foreach (Process p in Process.GetProcesses())
+                ;
         }
 
         private void Applications_Click(object sender, RoutedEventArgs e)
         {
+            Process Application = new Process();
+            Application.StartInfo.FileName = "APPWIZ.CPL";
+            Application.StartInfo.Arguments = string.Format("/computer={0}.meier.local", Computername.Text);
+            Application.Start();
         }
 
         private void RDP_Click(object sender, RoutedEventArgs e)
@@ -70,10 +78,6 @@ namespace WpfApplication1
             RDP.StartInfo.FileName = "mstsc.exe";
             RDP.StartInfo.Arguments = string.Format(@"/v:{0}.meier.local /f", Computername.Text);
             RDP.Start();
-        }
-
-        private void RemoteAssistance_Click(object sender, RoutedEventArgs e)
-        {
         }
 
         private void ViewC_Click(object sender, RoutedEventArgs e)
@@ -98,31 +102,29 @@ namespace WpfApplication1
             Restart.StartInfo.Arguments = string.Format(@" /C shutdown -i -m \\{0}.meier.local", Computername.Text);
             Restart.Start();
         }
- 
-        private void Login_Click(object sender, RoutedEventArgs e)
+
+        public void Password_Click(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (Authenticate("meier.local", Benutzername.Text, Kennwort.Text))
             {
                 string Popup1 = "Login successful";
                 MessageBox.Show(Popup1);
                 bool loginStatus = true;
-                Kennwort.Text = "";
             }
             else
             {
                 string Popup2 = "Login was not successful";
                 MessageBox.Show(Popup2);
                 bool LoginStatus = false;
-                Kennwort.Text = "";
             };
         }
+    
 
 
-        // Funktionen 
+    // Funktionen 
 
-        //öffnen des Explorers
-
-        private static void OpenExplorer(string path)
+    //öffnen des Explorers
+    private static void OpenExplorer(string path)
         {
             if (Directory.Exists(path))
                 Process.Start("explorer.exe", path);
@@ -164,6 +166,5 @@ namespace WpfApplication1
             return bAuth;
         }
 
-        
     }    
 }
