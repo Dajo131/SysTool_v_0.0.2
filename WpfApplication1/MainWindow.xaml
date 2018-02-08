@@ -134,7 +134,7 @@
                         Click="Restart_Click"
                         Content="Restart Computer" />
                     <Label
-                        x:Name="label"
+                        x:Name="label_IP"
                         Grid.ColumnSpan="3"
                         Width="447"
                         Height="25"
@@ -142,6 +142,14 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         Content="IP Adresse oder DNS Name" />
+                    <Label
+                        x:Name="label_Domain"
+                        Width="173"
+                        Height="25"
+                        Margin="483,10,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Content="Domäne" />
                 </Grid>
             </TabItem>
             <TabItem
@@ -248,7 +256,7 @@
             x:Name="Computername"
             Width="450"
             Height="25"
-            Margin="30,90,0,0"
+            Margin="30,115,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TextWrapping="Wrap" />
@@ -277,7 +285,17 @@
             Margin="625,10,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            Click="Login_Click"
             Content="Login"
             FontSize="10" />
+        <TextBox
+            x:Name="Domain"
+            Width="177"
+            Height="25"
+            Margin="498,115,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text=""
+            TextWrapping="Wrap" />
     </Grid>
 </Window>

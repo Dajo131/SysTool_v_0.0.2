@@ -43,7 +43,7 @@ namespace WpfApplication1
         {
             Process compmgmt = new Process();
             compmgmt.StartInfo.FileName = "compmgmt.msc";
-            compmgmt.StartInfo.Arguments = string.Format("/computer={0}.meier.local", Computername.Text);
+            compmgmt.StartInfo.Arguments = string.Format("/computer={0}.{1}", Computername.Text, Domain.Text);
             compmgmt.Start();
         }
 
@@ -51,26 +51,57 @@ namespace WpfApplication1
         {
             Process Services = new Process();
             Services.StartInfo.FileName = "services.msc";
-            Services.StartInfo.Arguments = string.Format("/computer={0}.meier.local", Computername.Text);
+            Services.StartInfo.Arguments = string.Format("/computer={0}.{1}", Computername.Text, Domain.Text);
             Services.Start();
         }
 
         private void StartItem_Click(object sender, RoutedEventArgs e)
         {
-           
+  //          Get-ComputerName;
+
+  //          Initialize - Listview;
+		//$SBPStatus.Text = "Retrieving Startup Items...";
+
+  //      if ((Get - WmiObject Win32_OperatingSystem - ComputerName $ComputerName).Version - eq "5.1.2600"){
+  //              Write - Verbose "Windows XP does not report Win32_StartupCommand correctly."
+  //   			$vbError = $vbmsg.popup("This feature is not supported on Windows XP.", 0, "Information", 0)
+  //   			$SBPStatus.Text = "Ready"
+     
+  //          }
+		//else{
+  //              Update - ContextMenu(Get - Variable cmsStart *)
+		//	$XML.Options.StartupItems.Property | %{ Add - Column $_}
+  //              Resize - Columns
+		//	$Col0 = $lvMain.Columns[0].Text
+		//	$Info = Get - WmiObject win32_StartupCommand - ComputerName $ComputerName - ErrorVariable SysError | Sort Name
+
+  //          Start - Sleep - m 250
+
+  //          if ($SysError){$SBPStatus.Text = "[$ComputerName] $SysError"}
+		//	else{
+		//	$Info | %{
+		//		$Item = New - Object System.Windows.Forms.ListViewItem($_.$Col0)
+
+  //              ForEach($Col in ($lvMain.Columns | ?{$_.Index - ne 0})){$Field = $Col.Text;$Item.SubItems.Add($_.$Field)}
+		//		$lvMain.Items.Add($Item)
+
+  //              }
+		//	$SBPStatus.Text = "Ready"
+
+  //          }
+  //          }
         }
 
         private void Process_Click(object sender, RoutedEventArgs e)
         {
-            foreach (Process p in Process.GetProcesses())
-                ;
+            foreach (Process p in Process.GetProcesses());
         }
 
         private void Applications_Click(object sender, RoutedEventArgs e)
         {
             Process Application = new Process();
             Application.StartInfo.FileName = "APPWIZ.CPL";
-            Application.StartInfo.Arguments = string.Format("/computer={0}.meier.local", Computername.Text);
+            Application.StartInfo.Arguments = string.Format("/computer={0}.{1}", Computername.Text, Domain.Text);
             Application.Start();
         }
 
@@ -78,7 +109,7 @@ namespace WpfApplication1
         {
             Process RDP = new Process();
             RDP.StartInfo.FileName = "mstsc.exe";
-            RDP.StartInfo.Arguments = string.Format(@"/v:{0}.meier.local /f", Computername.Text);
+            RDP.StartInfo.Arguments = string.Format(@"/v:{0}.{1} /f", Computername.Text, Domain.Text);
             RDP.Start();
         }
 
@@ -93,40 +124,49 @@ namespace WpfApplication1
 
             Process MSG = new Process();
             MSG.StartInfo.FileName = "msg.exe";
-            MSG.StartInfo.Arguments = string.Format(@" * /server:{0}.meier.local {1}", Computername.Text, input);
+            MSG.StartInfo.Arguments = string.Format(@" * /server:{0}.{1} {2}", Computername.Text, Domain.Text, input);
             MSG.Start();
         }
 
         private void Restart_Click(object sender, RoutedEventArgs e)
         {
-            Process Restart = new Process();
-            Restart.StartInfo.FileName = "cmd.exe";
-            Restart.StartInfo.Arguments = string.Format(@" /C shutdown -i -m \\{0}.meier.local", Computername.Text);
-            Restart.Start();
+            if (LoginStatus)
+            {
+                Process Restart = new Process();
+                Restart.StartInfo.FileName = "cmd.exe";
+                Restart.StartInfo.Arguments = string.Format(@" /C shutdown -i -m \\{0}.{1}", Computername.Text, Domain.Text);
+                Restart.Start();
+            }
+            else
+            {
+                string Popup3 = "Please Login.";
+                System.Windows.MessageBox.Show(Popup3);
+            }
+            
         }
 
-        public void Password_Click(object sender, System.Windows.Input.KeyEventArgs e)
+        private void Login_Click(object sender, RoutedEventArgs e)
         {
-            if (Authenticate("meier.local", Benutzername.Text, Kennwort.Text))
+            if (Authenticate(Domain.Text, Benutzername.Text, Kennwort.Text))
             {
                 string Popup1 = "Login successful";
                 System.Windows.MessageBox.Show(Popup1);
-                bool loginStatus = true;
+                LoginStatus = true;
             }
             else
             {
                 string Popup2 = "Login was not successful";
                 System.Windows.MessageBox.Show(Popup2);
-                bool LoginStatus = false;
+                LoginStatus = false;
             };
+
+            Kennwort.Text = "";
         }
-
-
 
         // Funktionen 
 
         //öffnen des Explorers
-        
+
         private static void OpenExplorer(string path)
         {
             if (Directory.Exists(path))
@@ -170,9 +210,9 @@ namespace WpfApplication1
             }
             return bAuth;
         }
-
-        //Nächste Funtkion
         
+        //Nächste Funtkion
+
 
     }    
 }
